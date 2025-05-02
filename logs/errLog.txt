@@ -1,0 +1,15 @@
+20250430	19:01:36	b1801dbc-00ae-406e-bd2b-6a9b919fd27d	Error: Not allowed by CORS
+20250430	21:05:58	b822a9ba-e878-4ff6-9e72-91816447b9f3	TypeError: Cannot read properties of undefined (reading 'id')
+20250430	21:06:40	f8fc26e5-f3f5-4481-bae7-66861de422a3	TypeError: res.stats is not a function
+20250430	21:07:41	15a2914d-78bc-48e0-9cda-fb26c5daaa84	TypeError: Cannot read properties of undefined (reading 'id')
+20250430	21:09:05	23b9b65c-2518-4791-b633-a41797c37085	TypeError: Cannot read properties of undefined (reading 'id')
+20250430	21:44:59	6e366a71-11e4-4ba7-837d-82b42fa9471a	TypeError: res.sendStats is not a function
+20250501	11:25:15	53a1a894-7565-48b9-bbeb-820d31927863	Error: secretOrPrivateKey must have a value
+20250501	11:27:53	01ac72d8-783b-4e54-a242-ab98bb3a52e3	Error: secretOrPrivateKey must have a value
+20250501	11:30:35	d00d1fcc-14a6-4fe6-88d1-b9029cb89269	TypeError: Cannot read properties of undefined (reading 'writeFile')
+20250501	11:33:30	99153651-3d5e-4e20-b740-56aa057b3914	TypeError: Cannot read properties of undefined (reading 'writeFile')
+20250501	11:38:35	2e39f52a-726a-46fd-bf72-e59a4169cf98	SyntaxError: Expected property name or '}' in JSON at position 4 (line 2 column 3)
+20250501	12:36:27	b0911681-7034-4cb7-abd0-c6cf12616545	ReferenceError: whitelist is not defined
+20250501	12:36:59	1ba19ba0-8624-412e-b562-6445bd51a7b7	ReferenceError: whitelist is not defined
+20250501	12:37:01	c51856de-0bf2-40ae-ab6a-9b37d58d7f29	ReferenceError: whitelist is not defined
+20250501	13:17:42	f895aa88-7f8d-468a-be40-c710b58eb820	TypeError: Cannot read properties of undefined (reading 'username')
