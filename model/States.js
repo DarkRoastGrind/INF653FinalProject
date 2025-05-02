@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const stateSchema = new Schema({
-  __id: {},
+  __id: { type: Number, required: true },
 
   state: { type: String, required: true },
 
