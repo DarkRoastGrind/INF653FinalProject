@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const stateSchema = new Schema({
-  __id: { type: Number, required: true },
+  _id: { type: Number, required: true },
 
   state: { type: String, required: true },
 
@@ -42,6 +42,8 @@ const stateSchema = new Schema({
   twitter_url: { type: String, required: true },
 
   facebook_url: { type: String, required: true },
+
+  funfacts: {},
 });
 
 module.exports = mongoose.model("State", stateSchema);
