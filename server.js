@@ -16,9 +16,6 @@ const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const verifyJWT = require("./middleware/verifyJWT");
-const cookieParser = require("cookie-parser");
-const credentials = require("./middleware/credentials");
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn')
 
@@ -30,26 +27,18 @@ connectDB();
 
 app.use(logger); // call the logger from the logEvents middleware.
 
-app.use(credentials); // Use credentials
 app.use(cors(corsOptions)); // Cross origin resource sharing.
 
 app.use(express.urlencoded({ extended: false })); // built-in middleware to handle urlencoded data
 app.use(express.json()); // Additional layer of middleware for json data.
-app.use(cookieParser()); // Middleware for cookies
 
 // Serve static files, applying css, text, etc.
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 // ---------------------------- routes ---------------------------- //
 app.use("/", require("./routes/root")); // Supply root folder route.
-app.use("/register", require("./routes/register")); // Supply register route.
-app.use("/auth", require("./routes/auth")); // Supply auth route.
-app.use("/refresh", require("./routes/refresh")); // Supply refresh route.
-app.use("/logout", require("./routes/logout")); // Supply logout route.
 
-// Verifies everything below using JWT.
-app.use(verifyJWT);
-app.use("/employees", require("./routes/api/employees")); // Employees for an API
+
 // ---------------------------------------------------------------- //
 
 // Catch all - Send 404 response for all other requests.
@@ -59,10 +48,13 @@ app.all(/^\/.*$/, (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
     res.sendFile(path.join(__dirname, "views", "404.html"));
+
   } else if (req.accepts("json")) {
     res.json({ error: "404 Not Found" });
+
   } else {
     res.type("txt").send("404 Not Found");
+    
   }
 });
 
