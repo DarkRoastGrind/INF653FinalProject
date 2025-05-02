@@ -46,6 +46,7 @@ app.use("/", require("./routes/root")); // Supply root folder route.
 app.all(/^\/.*$/, (req, res) => {
   // If the request is an html, respond with an html error
   res.status(404);
+  
   if (req.accepts("html")) {
     res.sendFile(path.join(__dirname, "views", "404.html"));
 
@@ -54,7 +55,7 @@ app.all(/^\/.*$/, (req, res) => {
 
   } else {
     res.type("txt").send("404 Not Found");
-    
+
   }
 });
 

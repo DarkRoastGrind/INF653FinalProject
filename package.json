@@ -1,28 +1,29 @@
 {
-  "name": "practice-project-7---middleware",
+  "name": "inf653-final-project",
   "version": "1.0.0",
-  "description": "Practice project for middleware",
+  "description": "Final project for INF 653, Fort Hays State University.",
   "main": "server.js",
+
   "scripts": {
     "start": "node server",
     "dev": "nodemon server"
   },
+
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1",
     "uuid": "^11.1.0"
   },
+
   "devDependencies": {
     "nodemon": "^3.1.10"
   },
+
   "engines": {
     "node": "^16.0.0"
   }
