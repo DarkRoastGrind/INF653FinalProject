@@ -3,14 +3,10 @@ const router = express.Router();
 const statesController = require("../../controllers/statesController");
 
 // Routes for state data
-router
-  .route("/")
-  .get(statesController.getAllStates);
+router.route("/").get(statesController.getAllStates);
 
 // Routes for specific state details
-router
-  .route("/:code")
-  .get(statesController.getState);
+router.route("/:code").get(statesController.getState);
 
 // Routes for funfacts
 router

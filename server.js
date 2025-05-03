@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Import middleware and configurations
 const corsOptions = require("./config/corsOptions");
@@ -11,7 +11,7 @@ const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
 
 // Import database Connection
-const connectDB = require('./config/dbConn')
+const connectDB = require("./config/dbConn");
 
 // Define constants
 const PORT = process.env.PORT || 5500; // Port for server.
@@ -36,7 +36,7 @@ const PORT = process.env.PORT || 5500; // Port for server.
     app.use("/states", require("./routes/api/states"));
 
     // 404 Handler
-    app.all('*', (req, res) => {
+    app.all("*", (req, res) => {
       res.status(404);
       if (req.accepts("html")) {
         res.sendFile(path.join(__dirname, "views", "404.html"));
@@ -54,7 +54,6 @@ const PORT = process.env.PORT || 5500; // Port for server.
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
-
   } catch (err) {
     console.error("Error connecting to MongoDB:", err);
   }

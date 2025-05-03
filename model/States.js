@@ -9,26 +9,26 @@ const stateSchema = new Schema(
       required: true,
       unique: true,
       uppercase: true, // Enforces state abbreviations like 'KS', 'MO'
-      trim: true
+      trim: true,
     },
     state: {
       type: String,
       required: true, // This stores the full name of the state
-      trim: true
+      trim: true,
     },
     funfacts: {
       type: [String],
       default: [], // Ensures an empty array by default if no funfacts are provided
       validate: {
         validator: function (arr) {
-          return arr.every(item => typeof item === "string");
+          return arr.every((item) => typeof item === "string");
         },
-        message: "All funfacts must be strings"
-      }
-    }
+        message: "All funfacts must be strings",
+      },
+    },
   },
   {
-    timestamps: true // Adds createdAt and updatedAt fields
+    timestamps: true, // Adds createdAt and updatedAt fields
   }
 );
 

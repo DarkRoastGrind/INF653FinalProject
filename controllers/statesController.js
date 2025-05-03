@@ -8,11 +8,14 @@ try {
   const dataPath = path.join(__dirname, "..", "model", "states.json");
   const rawData = fs.readFileSync(dataPath, "utf8");
   const parsedData = JSON.parse(rawData);
-if (Array.isArray(parsedData)) {
-  allStates = parsedData;
-} else {
-  console.error("Expected an array in states.json but got:", typeof parsedData);
-}
+  if (Array.isArray(parsedData)) {
+    allStates = parsedData;
+  } else {
+    console.error(
+      "Expected an array in states.json but got:",
+      typeof parsedData
+    );
+  }
 } catch (err) {
   console.error("Failed to read or parse states.json:", err.message);
 }
@@ -176,7 +179,9 @@ const getStateAdmission = async (req, res) => {
 
   // Validate that 'admission_date' field exists
   if (!stateData.admission_date) {
-    return res.status(400).json({ message: "Admission date not available for this state" });
+    return res
+      .status(400)
+      .json({ message: "Admission date not available for this state" });
   }
 
   // Prepare the response object with state and admission date
@@ -198,7 +203,9 @@ const addFunFacts = async (req, res) => {
 
   // Ensure funfacts is an array
   if (!Array.isArray(req.body.funfacts)) {
-    return res.status(400).json({ message: "State fun facts value must be an array" });
+    return res
+      .status(400)
+      .json({ message: "State fun facts value must be an array" });
   }
 
   try {
@@ -206,7 +213,7 @@ const addFunFacts = async (req, res) => {
     const result = await State.findOneAndUpdate(
       { stateCode },
       { $push: { funfacts: { $each: req.body.funfacts } } },
-      { new: true, upsert: true }  // upsert ensures that if the state doesn't exist, it is created
+      { new: true, upsert: true } // upsert ensures that if the state doesn't exist, it is created
     );
 
     // Return a response with only the required properties
@@ -214,7 +221,7 @@ const addFunFacts = async (req, res) => {
       _id: result._id,
       stateCode: result.stateCode,
       __v: result.__v,
-      funfacts: result.funfacts
+      funfacts: result.funfacts,
     });
   } catch (err) {
     // Handle errors
@@ -229,12 +236,16 @@ const updateFunFact = async (req, res) => {
   // Validate state code
   const stateData = allStates.find((state) => state.code === stateCode);
   if (!stateData) {
-    return res.status(400).json({ message: "Invalid state abbreviation parameter" });
+    return res
+      .status(400)
+      .json({ message: "Invalid state abbreviation parameter" });
   }
 
   // Validate presence of index
   if (index === undefined) {
-    return res.status(400).json({ message: "State fun fact index value required" });
+    return res
+      .status(400)
+      .json({ message: "State fun fact index value required" });
   }
 
   // Validate presence and type of funfact
@@ -247,7 +258,9 @@ const updateFunFact = async (req, res) => {
 
     // If no state document or no funfacts
     if (!state?.funfacts || !state.funfacts.length) {
-      return res.status(404).json({ message: `No Fun Facts found for ${stateData.state}` });
+      return res
+        .status(404)
+        .json({ message: `No Fun Facts found for ${stateData.state}` });
     }
 
     // Adjust 1-based index to 0-based
@@ -255,7 +268,11 @@ const updateFunFact = async (req, res) => {
 
     // Check if index is valid
     if (i < 0 || i >= state.funfacts.length) {
-      return res.status(404).json({ message: `No Fun Fact found at that index for ${stateData.state}` });
+      return res
+        .status(404)
+        .json({
+          message: `No Fun Fact found at that index for ${stateData.state}`,
+        });
     }
 
     // Update funfact at the given index
@@ -269,7 +286,7 @@ const updateFunFact = async (req, res) => {
       _id: result._id,
       stateCode: result.stateCode,
       __v: result.__v,
-      funfacts: result.funfacts
+      funfacts: result.funfacts,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -283,12 +300,16 @@ const deleteFunFact = async (req, res) => {
   // Validate state code
   const stateData = allStates.find((state) => state.code === stateCode);
   if (!stateData) {
-    return res.status(400).json({ message: "Invalid state abbreviation parameter" });
+    return res
+      .status(400)
+      .json({ message: "Invalid state abbreviation parameter" });
   }
 
   // Validate presence of index
   if (index === undefined || index === null) {
-    return res.status(400).json({ message: "State fun fact index value required" });
+    return res
+      .status(400)
+      .json({ message: "State fun fact index value required" });
   }
 
   try {
@@ -296,14 +317,20 @@ const deleteFunFact = async (req, res) => {
     const state = await State.findOne({ stateCode });
 
     if (!state?.funfacts || !state.funfacts.length) {
-      return res.status(404).json({ message: `No Fun Facts found for ${stateData.state}` });
+      return res
+        .status(404)
+        .json({ message: `No Fun Facts found for ${stateData.state}` });
     }
 
     // Convert the provided 1-based index to 0-based index
     const i = index - 1;
 
     if (i < 0 || i >= state.funfacts.length) {
-      return res.status(404).json({ message: `No Fun Fact found at that index for ${stateData.state}` });
+      return res
+        .status(404)
+        .json({
+          message: `No Fun Fact found at that index for ${stateData.state}`,
+        });
     }
 
     // Remove the fun fact at the given index
@@ -317,7 +344,7 @@ const deleteFunFact = async (req, res) => {
       _id: result._id,
       stateCode: result.stateCode,
       __v: result.__v,
-      funfacts: result.funfacts
+      funfacts: result.funfacts,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -329,7 +356,9 @@ const getState = async (req, res) => {
 
   const stateData = allStates.find((state) => state.code === stateCode);
   if (!stateData) {
-    return res.status(400).json({ message: "Invalid state abbreviation parameter" });
+    return res
+      .status(400)
+      .json({ message: "Invalid state abbreviation parameter" });
   }
 
   // Add the fun facts to the response
