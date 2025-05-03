@@ -256,3 +256,15 @@
 20250501	20:47:33	a07dcc60-ce84-41e8-97b0-04e2dfed1bd0	DELETE	undefined	/employees
 20250501	20:48:03	3d227b01-660c-4512-8420-f5a4d6b0a208	POST	undefined	/auth
 20250501	20:48:17	fde0026b-0fa7-40f3-b60b-10b46b732aca	DELETE	undefined	/employees
+20250502	10:39:30	8311915b-177e-4830-9881-8f1080979daa	GET	undefined	/states
+20250502	10:40:26	43712de1-21a9-456f-a764-0f4c567f2722	GET	undefined	/states
+20250502	10:40:48	cae21b87-80a7-492d-9827-78821e36594d	GET	undefined	/states
+20250502	10:41:35	cc938a34-59f9-4326-a343-3c332d7d5904	GET	undefined	/States
+20250502	10:41:40	d77406b2-e832-4ea2-ac15-43f5deefdb56	GET	undefined	/States
+20250502	10:42:05	6ce224b6-4f9f-4c04-b324-c34ecc65676b	GET	undefined	/states
+20250502	10:42:16	6dca5db9-36b7-4fed-8f85-483ae39fb847	GET	undefined	/state
+20250502	10:42:18	a5e88c66-96f0-4176-8c48-c4c61fa50b59	GET	undefined	/states
+20250502	10:44:01	c3721630-6f27-4a8b-9c4e-7f34d6bdbde3	GET	undefined	/states
+20250502	10:44:29	c7797098-dd85-4b0d-b55a-177e7fd2fb27	GET	undefined	/states/
+20250502	10:44:38	d1b04c76-a74d-4bbc-8e15-44ed7af96491	GET	undefined	/states/?contig=true
+20250502	12:59:52	b5751291-aa52-47e4-9880-80d883f56433	GET	undefined	/states/?contig=true

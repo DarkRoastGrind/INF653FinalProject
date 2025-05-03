@@ -2,48 +2,37 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const stateSchema = new Schema({
-  _id: { type: Number, required: true },
+const stateSchema = new Schema(
+  {
+    stateCode: {
+      type: String,
+      required: true,
+      unique: true,
+      uppercase: true, // Enforces state abbreviations like 'KS', 'MO'
+      trim: true
+    },
+    state: {
+      type: String,
+      required: true, // This stores the full name of the state
+      trim: true
+    },
+    funfacts: {
+      type: [String],
+      default: [], // Ensures an empty array by default if no funfacts are provided
+      validate: {
+        validator: function (arr) {
+          return arr.every(item => typeof item === "string");
+        },
+        message: "All funfacts must be strings"
+      }
+    }
+  },
+  {
+    timestamps: true // Adds createdAt and updatedAt fields
+  }
+);
 
-  state: { type: String, required: true },
-
-  slug: { type: String, required: true },
-
-  code: { type: String, required: true },
-
-  nickname: { type: String, required: true },
-
-  website: { type: String, required: true },
-
-  admission_date: { type: String, required: true },
-
-  admission_number: { type: Number, },
-
-  capital_city: { type: String, required: true },
-
-  capital_url: { type: String, required: true },
-
-  population: { type: Number, },
-
-  population_rank: { type: Number, },
-
-  constitution_url: { type: String, required: true },
-
-  state_flag_url: { type: String, required: true },
-
-  state_seal_url: { type: String, required: true },
-
-  map_image_url: { type: String, required: true },
-
-  landscape_background_url: { type: String, required: true },
-
-  skyline_background_url: { type: String, required: true },
-
-  twitter_url: { type: String, required: true },
-
-  facebook_url: { type: String, required: true },
-
-  funfacts: {},
-});
+// Add an index on `stateCode` for faster lookup
+stateSchema.index({ stateCode: 1 });
 
 module.exports = mongoose.model("State", stateSchema);
